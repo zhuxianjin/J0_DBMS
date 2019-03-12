@@ -16,7 +16,7 @@ from lib.core.common import PATH
 from lib.core.common import USER_NAME
 from lib.core.common import CONFIG_PATH
 from lib.core.common import SCHEMATA_PATH
-from lib.core.operation import create
+from lib.core.operation import create_database
 
 class DBMS:
 
@@ -92,8 +92,7 @@ class CLI(cmd.Cmd):
             print ("-------------------------------------------") 
             print ("增：")
             print ("create database [数据库名]         创建新数据库")
-            print ("create table [表名] ( [字段名] [字段类型] , [字段名] [字段类型], ... )        创建新表")
-            print ("  ")
+            print ("create table [表名] ( [字段名] [字段类型] , [字段名] [字段类型], ... )  创建新表")
             print ("其他：")
             print ("quit或q                              退出程序")
             print ("-------------------------------------------")
@@ -101,17 +100,19 @@ class CLI(cmd.Cmd):
             print ("找不到命令")
 
     def do_create(self,args):
-        print ("测试")
         # 判断要 create 的类型
-        '''
         try:
             datatype = shlex.split(args)[0]
-            data = re.findall(r'\((.*?)\)', args)[0]
-            print (data)
+            print (datatype)
+            if datatype == 'database':
+                create_database(shlex.split(args)[1])
+            elif datatype == 'table':
+                data = re.findall(r'\((.*?)\)', args)[0]
+                print (data)
+            else:
+                print ("语句错误")
         except Exception:
-            print (Exception)
-        '''
-        create()
+            Exception
 
     def do_EOF(self, line):
         return True
