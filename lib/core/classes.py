@@ -37,8 +37,8 @@ class DBMS:
                 schemata_tab.write(1,1,hashlib.sha1("j0k3r".encode('utf-8')).hexdigest())
                 schemata_db.close()
                 print ("初始化成功！")
-            except Exception:
-                print (Exception)
+            except Exception as ex:
+                print (ex)
         
     def create(self):
             print ("call create2")
@@ -89,13 +89,15 @@ class CLI(cmd.Cmd):
     def do_help(self, args):
         if args == "":
             print ("帮助")
-            print ("-------------------------------------------") 
+            print ("----------------------------------------------------------------------") 
             print ("增：")
-            print ("create database [数据库名]         创建新数据库")
-            print ("create table [表名] ( [字段名] [字段类型] , [字段名] [字段类型], ... )  创建新表")
+            print ("create database [数据库名]                                   创建新数据库")
+            print ("create table [表名] ( [字段名] [字段类型] , [] [] , ... )      创建新表")
+            print ("删：")
+            print ("drop database [数据库名]                                     删除数据库")
             print ("其他：")
-            print ("quit或q                              退出程序")
-            print ("-------------------------------------------")
+            print ("quit或q                                                     退出程序")
+            print ("----------------------------------------------------------------------")
         else:
             print ("找不到命令")
 
@@ -103,7 +105,6 @@ class CLI(cmd.Cmd):
         # 判断要 create 的类型
         try:
             datatype = shlex.split(args)[0]
-            print (datatype)
             if datatype == 'database':
                 create_database(shlex.split(args)[1])
             elif datatype == 'table':
@@ -111,8 +112,8 @@ class CLI(cmd.Cmd):
                 print (data)
             else:
                 print ("语句错误")
-        except Exception:
-            Exception
+        except Exception as ex:
+            print (ex)
 
     def do_EOF(self, line):
         return True
