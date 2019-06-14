@@ -113,6 +113,7 @@ class CLI(cmd.Cmd):
             print ("|create database [数据库名]                                      创建新数据库")
             print ("|create table [表名] ([列名] [数据类型] [列完整性约束条件],... )     创建新表")
             print ("|alter table [表名] add [列名] [数据类型] [列完整性约束条件]         添加列")
+            print ("|alter table [表名] modify [列名] [数据类型]                      修改列")
             print ("|删：")
             print ("|drop database [数据库名]                                        删除数据库")
             print ("|alter table [表名] drop [列名]                                  删除列")
