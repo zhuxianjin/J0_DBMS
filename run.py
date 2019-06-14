@@ -11,7 +11,6 @@ from lib.core.common import PATH
 def main():
     print ("程序目录："+PATH)
     print (LOGO)
-    login.start()
     while True:
         try:
             cmdline.cmdloop()
