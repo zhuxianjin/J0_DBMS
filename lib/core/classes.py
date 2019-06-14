@@ -48,7 +48,7 @@ class DBMS:
                 print (ex)
         
 
-class Login():
+class InitConf():
 
     def __init__(self):
         if not os.path.isfile(CONFIG_PATH):
