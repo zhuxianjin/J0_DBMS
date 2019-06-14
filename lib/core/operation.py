@@ -201,7 +201,7 @@ def alter(args):
         working_tab.cell(1,column).value = alter_data[3]
         working_db.save(PATH+"/data/db/"+current_db+".xlsx")
         print ("修改成功")
-    elif alter_method == 'drop' :
+    elif alter_method == 'drop' : # drop table column
         current_db = get_config_var(CONFIG_PATH,'RUN_DATABASE')
         if current_db == '':
             print ("请选择一个数据库：\nshow database 查看所有数据库 \nuse [数据库名] 选择数据库")
@@ -221,7 +221,7 @@ def alter(args):
                 print ("删除成功")
                 return
         print ("没有找到列名")
-    elif alter_method == 'modify' :
+    elif alter_method == 'modify' : # modify table column
         current_db = get_config_var(CONFIG_PATH,'RUN_DATABASE')
         if current_db == '':
             print ("请选择一个数据库：\nshow database 查看所有数据库 \nuse [数据库名] 选择数据库")
@@ -232,11 +232,13 @@ def alter(args):
         except Exception as ex :
             print (ex+"\n该表不存在")
             return 
-        #exit()
-        #column = working_tab.max_column + 1
-        #working_tab.cell(1,column).value = alter_data[3]
-        #working_db.save(PATH+"/data/db/"+current_db+".xlsx")
-        print ("修改成功")
+        for i in range(1,col_num+1):
+            if working_tab.cell(1,i).value == alter_data[3]:
+                # modify 操作
+                working_db.save(PATH+"/data/db/"+current_db+".xlsx")
+                print ("修改成功")
+                return
+        print ("没有找到列名")
     else:
         print ("请输入对表对操作")
     '''
