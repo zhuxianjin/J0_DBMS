@@ -100,6 +100,11 @@ class CLI(cmd.Cmd):
         # 输出帮助信息
         print ("输入help或h查看命令")
 
+    # 输入转小写
+    def precmd(self, line):
+        line = line.lower()
+        return line
+
     def do_help(self, args):
         if args == "":
             print ("帮助")
