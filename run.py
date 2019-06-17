@@ -2,7 +2,7 @@
 #coding: utf-8
 
 from __future__ import print_function
-from lib.core.modules import login
+from lib.core.modules import InitConf
 from lib.core.modules import dbms
 from lib.core.modules import cmdline
 from lib.core.common import LOGO
